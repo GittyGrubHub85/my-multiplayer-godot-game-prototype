@@ -1,0 +1,15 @@
+If you want to fix that go to this video tutorial to find it:
+https://www.youtube.com/watch?v=vbJLbrdvVHk&ab_channel=FinePointCGI
+
+
+-Download Android Studio
+-Download OpenJDK
+-Generate Key Store Command Line Command:
+	keytool -keyalg RSA -genkeypair -alias androiddebugkey -keypass android -keystore debug.keystore -storepass android -dname "CN=Android Debug,O=Android,C=US" -validity 9999 -deststoretype pkcs12
+-Lastly, this is the Android SDK path. This isn’t included in the video tutorial and I can’t find it in his 
+settings because of his 2021 outdated version of his game engine. I had to find solution for myself and 
+adding directory fixed the issue I’m having. Here's the directory: C:/Users/QHTF/AppData/Local/Android/Sdk
+
+
+
+
