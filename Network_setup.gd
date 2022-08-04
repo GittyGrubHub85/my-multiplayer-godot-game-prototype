@@ -3,7 +3,7 @@ extends Control
 var player = load("res://Player.tscn")
 
 onready var multiplayer_config_ui = $Multiplayer_configure
-onready var server_ip_address = $Multiplayer_configure/Server_ip_address
+onready var username_text_edit = $Multiplayer_configure/Username_text_edit
 
 onready var device_ip_address = $UI/Device_ip_address
 
@@ -31,17 +31,20 @@ func _player_disconnected(id) -> void:
 
 
 func _on_Create_server_pressed():
-	multiplayer_config_ui.hide()
-	Network.create_server()
-	
-	instance_player(get_tree().get_network_unique_id())
+	if username_text_edit.text != "":
+		Network.current_player_username = username_text_edit.text
+		multiplayer_config_ui.hide()
+		Network.create_server()
+		
+		instance_player(get_tree().get_network_unique_id())
 	pass # Replace with function body.
 
 func _on_Join_server_pressed():
-	if server_ip_address.text != "":
+	if username_text_edit.text != "":
 		multiplayer_config_ui.hide()
-		Network.ip_address = server_ip_address.text
-		Network.join_server()
+		username_text_edit.hide()
+		
+		Global.instance_node(load("res://Server_browser.tscn"), self)
 	pass # Replace with function body.
 
 func _connected_to_server() -> void:

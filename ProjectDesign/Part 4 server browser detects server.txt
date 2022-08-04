@@ -1,0 +1,7 @@
+I checked the repository of the actual tutorial and I found out it couldn't detect a server in any of the
+device. I can connect using Manual setup ONLY within the device but in another device it CANNOT.
+
+This is the same issue in my own project too. I really don't know the solution for this one yet. I'll find
+ways to fix for this port forwarding, local multiplayer system.
+
+It's difficult to show it because its in 2 devices. 

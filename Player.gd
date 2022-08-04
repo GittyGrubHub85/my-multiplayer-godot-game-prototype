@@ -21,11 +21,19 @@ func _process(delta: float) -> void:
 		
 		look_at(get_global_mouse_position())
 	else:
-		rotation_degrees = lerp(rotation_degrees, puppet_rotation, delta * 8)
+		rotation = lerp_angle(rotation, puppet_rotation, delta * 8)
 		
 		if not tween.is_active():
 			move_and_slide(puppet_velocity * speed)
 	
+
+func lerp_angle(from, to, weight):
+	return from + short_angle_dist(from, to) * weight
+
+func short_angle_dist(from, to):
+	var max_angle = PI * 2
+	var difference = fmod(to - from, max_angle)
+	return fmod(2 * difference, max_angle) - difference
 
 func puppet_position_set(new_value) -> void:
 	puppet_position = new_value
@@ -37,5 +45,5 @@ func _on_Network_tick_rate_timeout():
 	if is_network_master():
 		rset_unreliable("puppet_position", global_position)
 		rset_unreliable("puppet_velocity", velocity)
-		rset_unreliable("puppet_rotation", rotation_degrees)
+		rset_unreliable("puppet_rotation", rotation)
 	pass # Replace with function body.
